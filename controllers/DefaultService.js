@@ -45,7 +45,7 @@ exports.getTaxiByLocation = function(args, res, next) {
   res.end();
 }
 
-exports.getTaxisCurrentGps = function(args, res, next) {
+exports.getTaxiCurrentGps = function(args, res, next) {
   /**
    * Returns current gps of taxis
    *
@@ -63,8 +63,8 @@ exports.getTaxisCurrentGps = function(args, res, next) {
   
   getData().then((data) => {
     let new_taxi_array = []
+    let taxi_json_array = taxi_json.pl_taxis
     try {
-      let taxi_json_array = taxi_json.pl_taxis
       for (var i in taxi_json_array) {
         if (taxi_json_array[i].gps != null) {
           if (taxi_json_array[i].gps.recv_ts >= time_now.toISOString()) {
