@@ -64,7 +64,7 @@ exports.getTaxiCurrentGps = function(args, res, next) {
   getData().then((data) => {
     let new_taxi_array = []
     let new_taxi_json = {}
-    let taxi_json_array = taxi_json.pl_taxis
+    let taxi_json_array = data.pl_taxis
     try {
       for (var i in taxi_json_array) {
         if (taxi_json_array[i].gps != null) {
