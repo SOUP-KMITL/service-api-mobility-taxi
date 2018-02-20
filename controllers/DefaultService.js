@@ -88,7 +88,7 @@ exports.getTaxiCurrentGps = function(args, res, next) {
     }
     
     new_taxi_json.current_gps = JSON.stringify(new_taxi_array)
-    res.send(new_taxi_json)
+    return new_taxi_json
     res.end();
   })
 }
