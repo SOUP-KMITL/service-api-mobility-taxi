@@ -85,7 +85,7 @@ exports.getTaxiCurrentGps = function(args, res, next) {
       console.log(e)
       console.log('Error at id ' + taxi_json_array[i].id)
     }
-    new_taxi_json.current_gps = JSON.stringify(new_taxi_array)
+    new_taxi_json.current_gps = new_taxi_array
 
     res.send(new_taxi_json)
     res.end();
