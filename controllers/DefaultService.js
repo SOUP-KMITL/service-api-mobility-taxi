@@ -37,6 +37,7 @@ exports.getTaxiByLocation = function(args, res, next) {
     getData().then((data) => {
       let new_taxi_array = []
       let taxi_json_array = data.data
+      let count = 0
       try {
         for (var i in taxi_json_array) {
           if (taxi_json_array[i].gps != null) {
@@ -48,6 +49,7 @@ exports.getTaxiByLocation = function(args, res, next) {
                 if (Math.abs(location_lat - taxi_lat) <= 0.05 && Math.abs(location_long - taxi_long) <= 0.05) {
                   delete taxi_json_array[i].service
                   new_taxi_array.push(taxi_json_array[i])
+                  count++
                 }
               }              
             }
@@ -58,7 +60,8 @@ exports.getTaxiByLocation = function(args, res, next) {
         console.log(e)
         console.log('Error at id ' + taxi_json_array[i].id)
       }
-      new_taxi_json.current_gps = new_taxi_array
+      new_taxi_json.number_taxi = count
+      new_taxi_json.taxi_at_location = new_taxi_array
       res.send(new_taxi_json)
       res.end();
     })
