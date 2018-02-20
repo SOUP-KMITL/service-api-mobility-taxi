@@ -60,10 +60,9 @@ exports.getTaxiCurrentGps = function(args, res, next) {
       })
     })
   }
-  
+  let new_taxi_json = {}
   getData().then((data) => {
     let new_taxi_array = []
-    let new_taxi_json = {}
     let taxi_json_array = data.data
     try {
       for (var i in taxi_json_array) {
@@ -89,8 +88,8 @@ exports.getTaxiCurrentGps = function(args, res, next) {
     
     new_taxi_json.current_gps = JSON.stringify(new_taxi_array)
     console.log(new_taxi_json)
-    // res.send("asasd")
-    res.end();
   })
+  res.send(new_taxi_json)
+  res.end();
 }
 
