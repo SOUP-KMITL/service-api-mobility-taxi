@@ -52,7 +52,7 @@ exports.getTaxiCurrentGps = function(args, res, next) {
    * no response value expected for this operation
    **/
   let time_now = new Date()
-  let new_taxi_json = {}
+
   const getData = () => {
     return new Promise((resolve, reject) => {
       db.taxiData.find().sort({'_id':-1}).limit(1).toArray(function (err, doc) {
@@ -63,6 +63,7 @@ exports.getTaxiCurrentGps = function(args, res, next) {
   
   getData().then((data) => {
     let new_taxi_array = []
+    let new_taxi_json = {}
     let taxi_json_array = taxi_json.pl_taxis
     try {
       for (var i in taxi_json_array) {
@@ -87,8 +88,8 @@ exports.getTaxiCurrentGps = function(args, res, next) {
     }
     
     new_taxi_json.current_gps = JSON.stringify(new_taxi_array)
+    res.send(new_taxi_json)
+    res.end();
   })
-  res.send(new_taxi_json)
-  res.end();
 }
 
