@@ -56,7 +56,7 @@ exports.getTaxiCurrentGps = function(args, res, next) {
   const getData = () => {
     return new Promise((resolve, reject) => {
       db.taxiData.find().sort({'_id':-1}).limit(1).toArray(function (err, doc) {
-        resolve(doc[0].geolocation)
+        resolve(doc[0])
       })
     })
   }
